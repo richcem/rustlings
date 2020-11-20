@@ -35,6 +35,25 @@ impl Default for Person {
 // Otherwise, then return an instantiated Person object with the results
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
+
+        if s.is_empty() {
+            return Person::default();
+        }
+
+        let v: Vec<&str> = s.split(',').collect();
+
+        if v.len() != 2 {
+            return Person::default();
+        }
+
+        if v[0].is_empty() || v[1].is_empty() {
+            return Person::default();
+        }
+
+        Person {
+            name: String::from(v[0]),
+            age: v[1].parse::<usize>().ok().unwrap()
+        }
     }
 }
 

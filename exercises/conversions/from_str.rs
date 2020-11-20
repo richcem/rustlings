@@ -23,6 +23,13 @@ struct Person {
 impl FromStr for Person {
     type Err = String;
     fn from_str(s: &str) -> Result<Person, Self::Err> {
+        if s.is_empty() {            
+            return Err("sss");
+        }
+
+        let words : Vec<str> = s.split(',').collect();
+
+        println!("{}", words);
     }
 }
 
